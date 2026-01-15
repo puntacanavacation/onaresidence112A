@@ -1,0 +1,884 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Welcome to ONA Residences Punta Cana</title>
+  <meta name="description" content="Guest welcome guide for ONA Residences, Punta Cana. Wi-Fi, hot tub, house info, and local recommendations." />
+
+  <style>
+    :root{
+      --bg: #071a22;
+      --card: rgba(255,255,255,.08);
+      --card2: rgba(255,255,255,.06);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.72);
+      --accent: #2fe6c7;
+      --accent2: #ffd166;
+      --shadow: 0 16px 50px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 26px;
+      --max: 1100px;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 700px at 15% 10%, rgba(47,230,199,.22), transparent 60%),
+        radial-gradient(900px 600px at 85% 20%, rgba(255,209,102,.16), transparent 55%),
+        linear-gradient(180deg, #04131b 0%, #071a22 55%, #061018 100%);
+      line-height:1.45;
+    }
+
+    a{ color:inherit; }
+    .wrap{ max-width:var(--max); margin:0 auto; padding:22px; }
+    .topbar{
+      position:sticky; top:0; z-index:10;
+      backdrop-filter: blur(10px);
+      background: rgba(4,19,27,.55);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .topbar-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:14px;
+      max-width:var(--max); margin:0 auto; padding:12px 22px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      text-decoration:none;
+    }
+    .logo{
+      width:38px; height:38px; border-radius:12px;
+      background: linear-gradient(135deg, rgba(47,230,199,.9), rgba(255,209,102,.85));
+      box-shadow: 0 10px 25px rgba(47,230,199,.18);
+      position:relative;
+      overflow:hidden;
+    }
+    .logo:after{
+      content:"";
+      position:absolute; inset:-30%;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.65), transparent 50%);
+      transform: rotate(18deg);
+    }
+    .brand h1{
+      font-size:14px; margin:0;
+      letter-spacing:.2px;
+      font-weight:700;
+    }
+    .brand span{
+      display:block;
+      font-size:12px; color:var(--muted); font-weight:500;
+      margin-top:2px;
+    }
+    .controls{
+      display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+    }
+    select, .btn{
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.08);
+      color:var(--text);
+      border-radius: 12px;
+      padding:10px 12px;
+      font-size:14px;
+      outline:none;
+    }
+    .btn{
+      text-decoration:none;
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+    }
+    .btn:hover, select:hover{
+      border-color: rgba(47,230,199,.45);
+      background: rgba(255,255,255,.11);
+    }
+
+    .hero{
+      margin-top:18px;
+      border-radius: var(--radius2);
+      overflow:hidden;
+      box-shadow: var(--shadow);
+      border:1px solid rgba(255,255,255,.10);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.15), rgba(0,0,0,.45)),
+        url("https://source.unsplash.com/1600x900/?punta-cana,beach") center/cover no-repeat;
+      /* Replace with your own image if you upload it:
+         background-image: linear-gradient(...), url("./assets/hero.jpg"); */
+    }
+    .hero-inner{
+      padding:48px 22px;
+      max-width:var(--max);
+      margin:0 auto;
+      display:grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap:18px;
+      align-items:end;
+    }
+    @media (max-width: 900px){
+      .hero-inner{ grid-template-columns: 1fr; }
+    }
+    .hero h2{
+      margin:0 0 10px 0;
+      font-size: clamp(28px, 4vw, 44px);
+      letter-spacing:-.6px;
+    }
+    .hero p{
+      margin:0;
+      color: rgba(255,255,255,.86);
+      font-size: 16px;
+      max-width: 62ch;
+    }
+
+    .quick{
+      display:grid;
+      gap:10px;
+      background: rgba(255,255,255,.07);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: var(--radius);
+      padding:14px;
+    }
+    .pill{
+      display:flex; justify-content:space-between; gap:10px;
+      padding:10px 12px;
+      border-radius: 14px;
+      background: rgba(0,0,0,.22);
+      border:1px solid rgba(255,255,255,.10);
+      font-size:14px;
+    }
+    .pill b{ color: rgba(255,255,255,.95); }
+    .pill small{ color: var(--muted); }
+
+    .grid{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:14px;
+    }
+    .card{
+      grid-column: span 6;
+      background: var(--card);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: var(--radius);
+      box-shadow: 0 10px 35px rgba(0,0,0,.22);
+      overflow:hidden;
+    }
+    .card-inner{ padding:16px; }
+    .card h3{ margin:0 0 8px 0; font-size:18px; }
+    .card p{ margin:0; color:var(--muted); }
+    .card ul{ margin:10px 0 0 18px; color:var(--muted); }
+    .card li{ margin:6px 0; }
+    .tagrow{ display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
+    .tag{
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.20);
+      padding:6px 10px;
+      border-radius: 999px;
+      font-size:12px;
+      color: rgba(255,255,255,.78);
+    }
+
+    .card.full{ grid-column: span 12; }
+    .card.third{ grid-column: span 4; }
+    @media (max-width: 900px){
+      .card, .card.third{ grid-column: span 12; }
+    }
+
+    .section-title{
+      margin:26px 0 10px;
+      display:flex; align-items:baseline; justify-content:space-between; gap:14px;
+    }
+    .section-title h2{ margin:0; font-size:20px; }
+    .section-title span{ color:var(--muted); font-size:13px; }
+
+    .gallery{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:12px;
+      margin-top:12px;
+    }
+    .photo{
+      grid-column: span 3;
+      border-radius: 16px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      aspect-ratio: 4/3;
+      box-shadow: 0 10px 30px rgba(0,0,0,.2);
+    }
+    .photo img{ width:100%; height:100%; object-fit:cover; display:block; }
+    @media (max-width: 900px){ .photo{ grid-column: span 6; } }
+    @media (max-width: 520px){ .photo{ grid-column: span 12; } }
+
+    .footer{
+      margin:30px 0 8px;
+      padding:18px;
+      border-top: 1px solid rgba(255,255,255,.10);
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .muted{ color: var(--muted); }
+    .hr{
+      height:1px;
+      background: rgba(255,255,255,.10);
+      margin: 10px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="#top">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <h1 data-i18n="brandTitle">ONA Residences • Punta Cana</h1>
+          <span data-i18n="brandSubtitle">Guest Welcome Guide</span>
+        </div>
+      </a>
+
+      <div class="controls">
+        <label class="muted" for="lang" style="font-size:13px;" data-i18n="langLabel">Language</label>
+        <select id="lang" aria-label="Language">
+          <option value="en">English</option>
+          <option value="es">Español</option>
+          <option value="fr">Français</option>
+        </select>
+        <a class="btn" href="#essentials" data-i18n="btnEssentials">Quick Essentials</a>
+        <a class="btn" href="#manual" data-i18n="btnManual">House Manual</a>
+        <a class="btn" href="#food" data-i18n="btnFood">Eat & Drink</a>
+      </div>
+    </div>
+  </div>
+
+  <a id="top"></a>
+
+  <header class="hero">
+    <div class="hero-inner wrap">
+      <div>
+        <h2 data-i18n="heroTitle">Welcome — relax, unwind, and enjoy Punta Cana 🌴</h2>
+        <p data-i18n="heroBody">
+          This page has the quick stuff first (Wi-Fi, breaker, hot tub), plus a simple guide to the apartment and a few personal recommendations.
+          For full details, use the PDF/guide link below.
+        </p>
+
+        <div class="tagrow" aria-label="highlights">
+          <span class="tag" data-i18n="tagBeach">Beach & pool vibe</span>
+          <span class="tag" data-i18n="tagFast">Fast answers</span>
+          <span class="tag" data-i18n="tagEasy">Easy instructions</span>
+        </div>
+      </div>
+
+      <aside class="quick" id="essentials" aria-label="Quick essentials">
+        <div class="pill">
+          <div>
+            <b data-i18n="wifiTitle">Wi-Fi</b><br />
+            <small data-i18n="wifiHint">Network + password</small>
+          </div>
+          <div style="text-align:right">
+            <b id="wifiName">ONA-WIFI-NAME</b><br />
+            <small id="wifiPass">PASSWORD-HERE</small>
+          </div>
+        </div>
+
+        <div class="pill">
+          <div>
+            <b data-i18n="breakerTitle">Power breaker</b><br />
+            <small data-i18n="breakerHint">If power trips</small>
+          </div>
+          <div style="text-align:right">
+            <small data-i18n="breakerWhere">Location: near entrance / utility panel</small>
+          </div>
+        </div>
+
+        <div class="pill">
+          <div>
+            <b data-i18n="hotTubTitle">Hot tub</b><br />
+            <small data-i18n="hotTubHint">Quick start + safety</small>
+          </div>
+          <div style="text-align:right">
+            <small data-i18n="hotTubWhere">Location: terrace / patio</small>
+          </div>
+        </div>
+
+        <a class="btn" href="#pdf" style="width:100%; margin-top:6px;" data-i18n="btnFullGuide">Open full PDF guide</a>
+      </aside>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="section-title">
+      <h2 data-i18n="sectionEssentials">Quick Essentials</h2>
+      <span data-i18n="sectionEssentialsNote">Edit the placeholders to match your apartment.</span>
+    </div>
+
+    <div class="grid">
+      <section class="card">
+        <div class="card-inner">
+          <h3 data-i18n="wifiCardTitle">Wi-Fi</h3>
+          <p data-i18n="wifiCardBody">Connect using the network and password below. If it’s slow, try reconnecting or restarting the router.</p>
+          <div class="hr"></div>
+          <ul>
+            <li><b data-i18n="wifiNetworkLabel">Network:</b> <span id="wifiName2">ONA-WIFI-NAME</span></li>
+            <li><b data-i18n="wifiPasswordLabel">Password:</b> <span id="wifiPass2">PASSWORD-HERE</span></li>
+            <li><b data-i18n="wifiRouterLabel">Router:</b> <span data-i18n="wifiRouterValue">Living room (near TV / shelf)</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="card-inner">
+          <h3 data-i18n="hotTubCardTitle">Hot tub (quick instructions)</h3>
+          <p data-i18n="hotTubCardBody">Simple steps to enjoy it safely.</p>
+          <ul>
+            <li data-i18n="hotTubStep1">1) Remove the cover carefully and set it aside.</li>
+            <li data-i18n="hotTubStep2">2) Press Power on the control panel.</li>
+            <li data-i18n="hotTubStep3">3) Set temperature to your preference (recommended ~38°C / 100°F).</li>
+            <li data-i18n="hotTubStep4">4) When finished: turn jets off, place cover back securely.</li>
+            <li data-i18n="hotTubSafety"><b>Safety:</b> No glass. Keep kids supervised. Do not adjust chemicals.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="card full">
+        <div class="card-inner">
+          <h3 data-i18n="breakerCardTitle">If power trips</h3>
+          <p data-i18n="breakerCardBody">Most issues are a quick reset.</p>
+          <ul>
+            <li data-i18n="breakerStep1">1) Check if only one room is out or the whole apartment.</li>
+            <li data-i18n="breakerStep2">2) Find the breaker panel (update the location text below).</li>
+            <li data-i18n="breakerStep3">3) Look for a switch that is in the middle/off position.</li>
+            <li data-i18n="breakerStep4">4) Flip it fully OFF, then back ON.</li>
+            <li data-i18n="breakerStep5">5) If it trips again, unplug the last device you used and try once more.</li>
+          </ul>
+          <div class="tagrow">
+            <span class="tag" data-i18n="breakerLocationTag">Breaker location: update me</span>
+            <span class="tag" data-i18n="breakerContactTag">If urgent, message host</span>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="section-title" id="manual">
+      <h2 data-i18n="sectionManual">House Manual (Quick How-Tos)</h2>
+      <span data-i18n="sectionManualNote">Short instructions — full details in the PDF.</span>
+    </div>
+
+    <div class="grid">
+      <section class="card third">
+        <div class="card-inner">
+          <h3 data-i18n="applCoffeeTitle">Coffee maker</h3>
+          <ul>
+            <li data-i18n="applCoffee1">Fill water tank.</li>
+            <li data-i18n="applCoffee2">Add capsule/coffee.</li>
+            <li data-i18n="applCoffee3">Press start.</li>
+            <li data-i18n="applCoffee4">If stuck: power off 10s and retry.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="card third">
+        <div class="card-inner">
+          <h3 data-i18n="applACTitle">A/C / Thermostat</h3>
+          <ul>
+            <li data-i18n="applAC1">Set to Cool mode.</li>
+            <li data-i18n="applAC2">Recommended 23–25°C (73–77°F).</li>
+            <li data-i18n="applAC3">Keep doors/windows closed.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="card third">
+        <div class="card-inner">
+          <h3 data-i18n="applTVTitle">TV & Streaming</h3>
+          <ul>
+            <li data-i18n="applTV1">Use the main remote to power on.</li>
+            <li data-i18n="applTV2">Select HDMI/Apps as needed.</li>
+            <li data-i18n="applTV3">Please log out of personal accounts on checkout.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="card third">
+        <div class="card-inner">
+          <h3 data-i18n="applWasherTitle">Washer / Dryer</h3>
+          <ul>
+            <li data-i18n="applWasher1">Load clothes (don’t overfill).</li>
+            <li data-i18n="applWasher2">Add detergent.</li>
+            <li data-i18n="applWasher3">Choose a cycle → Start.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="card third">
+        <div class="card-inner">
+          <h3 data-i18n="applKitchenTitle">Oven / Stove</h3>
+          <ul>
+            <li data-i18n="applKitchen1">Use knobs for burners.</li>
+            <li data-i18n="applKitchen2">For oven: set mode + temperature.</li>
+            <li data-i18n="applKitchen3">Turn off after use.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="card third">
+        <div class="card-inner">
+          <h3 data-i18n="applTrashTitle">Trash & Recycling</h3>
+          <ul>
+            <li data-i18n="applTrash1">Bag trash securely.</li>
+            <li data-i18n="applTrash2">Dispose in designated bins (update location).</li>
+            <li data-i18n="applTrash3">No loose food in bins.</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+
+    <div class="section-title" id="food">
+      <h2 data-i18n="sectionFood">Eat & Drink (Personal picks)</h2>
+      <span data-i18n="sectionFoodNote">Add your favorite spots + Google Maps links.</span>
+    </div>
+
+    <div class="grid">
+      <section class="card">
+        <div class="card-inner">
+          <h3 data-i18n="cafesTitle">Cafés (2)</h3>
+          <ul>
+            <li><b data-i18n="cafe1Name">Café #1 (edit name)</b> — <span data-i18n="cafe1Desc">great coffee & breakfast, relaxed vibe</span></li>
+            <li><b data-i18n="cafe2Name">Café #2 (edit name)</b> — <span data-i18n="cafe2Desc">good pastries, quick stop before the beach</span></li>
+          </ul>
+          <p class="muted" style="margin-top:10px;" data-i18n="foodTip">
+            Tip: Paste Google Maps links so guests can tap once to navigate.
+          </p>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="card-inner">
+          <h3 data-i18n="dinnerTitle">Upscale dinner (2)</h3>
+          <ul>
+            <li><b data-i18n="dinner1Name">Dinner #1 (edit name)</b> — <span data-i18n="dinner1Desc">reservation recommended, great atmosphere</span></li>
+            <li><b data-i18n="dinner2Name">Dinner #2 (edit name)</b> — <span data-i18n="dinner2Desc">perfect for a special night, cocktails + seafood</span></li>
+          </ul>
+        </div>
+      </section>
+    </div>
+
+    <div class="section-title">
+      <h2 data-i18n="sectionPhotos">Photos</h2>
+      <span data-i18n="sectionPhotosNote">Replace these with your own apartment + beach pictures.</span>
+    </div>
+
+    <div class="gallery" aria-label="Photo gallery">
+      <!-- Best practice: upload your own images to /assets and replace these src URLs.
+           Example: <img src="./assets/living-room.jpg" alt="Living room"> -->
+      <div class="photo"><img src="https://source.unsplash.com/900x650/?punta-cana,beach,palm" alt="Punta Cana beach" /></div>
+      <div class="photo"><img src="https://source.unsplash.com/900x650/?caribbean,resort,pool" alt="Caribbean pool" /></div>
+      <div class="photo"><img src="https://source.unsplash.com/900x650/?tropical,apartment,interior" alt="Apartment interior" /></div>
+      <div class="photo"><img src="https://source.unsplash.com/900x650/?bedroom,resort,tropical" alt="Bedroom" /></div>
+    </div>
+
+    <div class="section-title" id="pdf">
+      <h2 data-i18n="sectionGuide">Full house guide (PDF)</h2>
+      <span data-i18n="sectionGuideNote">Link your detailed manual here.</span>
+    </div>
+
+    <section class="card full">
+      <div class="card-inner">
+        <p data-i18n="pdfBody">
+          For complete instructions (every appliance, policies, and troubleshooting), open the full guide:
+        </p>
+        <div class="tagrow">
+          <!-- Replace href with your real PDF link -->
+          <a class="btn" href="YOUR-PDF-LINK-HERE" target="_blank" rel="noopener" data-i18n="pdfBtn">Open PDF guide</a>
+          <a class="btn" href="#top" data-i18n="backTop">Back to top</a>
+        </div>
+        <p class="muted" style="margin-top:10px;" data-i18n="pdfNote">
+          Tip: If your PDF is in the repo, you can upload it and link it like: ./assets/house-guide.pdf
+        </p>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div data-i18n="footerLine1">Enjoy your stay — and please reach out if anything needs attention.</div>
+      <div class="muted" data-i18n="footerLine2">Host contact: (add your preferred contact method here)</div>
+    </footer>
+  </main>
+
+  <script>
+    // Simple i18n (English / Spanish / French). Add more languages by extending this object.
+    const I18N = {
+      en: {
+        brandTitle: "ONA Residences • Punta Cana",
+        brandSubtitle: "Guest Welcome Guide",
+        langLabel: "Language",
+        btnEssentials: "Quick Essentials",
+        btnManual: "House Manual",
+        btnFood: "Eat & Drink",
+
+        heroTitle: "Welcome — relax, unwind, and enjoy Punta Cana 🌴",
+        heroBody: "This page has the quick stuff first (Wi-Fi, breaker, hot tub), plus a simple guide to the apartment and a few personal recommendations. For full details, use the PDF/guide link below.",
+        tagBeach: "Beach & pool vibe",
+        tagFast: "Fast answers",
+        tagEasy: "Easy instructions",
+
+        wifiTitle: "Wi-Fi",
+        wifiHint: "Network + password",
+        breakerTitle: "Power breaker",
+        breakerHint: "If power trips",
+        breakerWhere: "Location: near entrance / utility panel",
+        hotTubTitle: "Hot tub",
+        hotTubHint: "Quick start + safety",
+        hotTubWhere: "Location: terrace / patio",
+        btnFullGuide: "Open full PDF guide",
+
+        sectionEssentials: "Quick Essentials",
+        sectionEssentialsNote: "Edit the placeholders to match your apartment.",
+
+        wifiCardTitle: "Wi-Fi",
+        wifiCardBody: "Connect using the network and password below. If it’s slow, try reconnecting or restarting the router.",
+        wifiNetworkLabel: "Network:",
+        wifiPasswordLabel: "Password:",
+        wifiRouterLabel: "Router:",
+        wifiRouterValue: "Living room (near TV / shelf)",
+
+        hotTubCardTitle: "Hot tub (quick instructions)",
+        hotTubCardBody: "Simple steps to enjoy it safely.",
+        hotTubStep1: "1) Remove the cover carefully and set it aside.",
+        hotTubStep2: "2) Press Power on the control panel.",
+        hotTubStep3: "3) Set temperature to your preference (recommended ~38°C / 100°F).",
+        hotTubStep4: "4) When finished: turn jets off, place cover back securely.",
+        hotTubSafety: "Safety: No glass. Keep kids supervised. Do not adjust chemicals.",
+
+        breakerCardTitle: "If power trips",
+        breakerCardBody: "Most issues are a quick reset.",
+        breakerStep1: "1) Check if only one room is out or the whole apartment.",
+        breakerStep2: "2) Find the breaker panel (update the location text below).",
+        breakerStep3: "3) Look for a switch that is in the middle/off position.",
+        breakerStep4: "4) Flip it fully OFF, then back ON.",
+        breakerStep5: "5) If it trips again, unplug the last device you used and try once more.",
+        breakerLocationTag: "Breaker location: update me",
+        breakerContactTag: "If urgent, message host",
+
+        sectionManual: "House Manual (Quick How-Tos)",
+        sectionManualNote: "Short instructions — full details in the PDF.",
+
+        applCoffeeTitle: "Coffee maker",
+        applCoffee1: "Fill water tank.",
+        applCoffee2: "Add capsule/coffee.",
+        applCoffee3: "Press start.",
+        applCoffee4: "If stuck: power off 10s and retry.",
+
+        applACTitle: "A/C / Thermostat",
+        applAC1: "Set to Cool mode.",
+        applAC2: "Recommended 23–25°C (73–77°F).",
+        applAC3: "Keep doors/windows closed.",
+
+        applTVTitle: "TV & Streaming",
+        applTV1: "Use the main remote to power on.",
+        applTV2: "Select HDMI/Apps as needed.",
+        applTV3: "Please log out of personal accounts on checkout.",
+
+        applWasherTitle: "Washer / Dryer",
+        applWasher1: "Load clothes (don’t overfill).",
+        applWasher2: "Add detergent.",
+        applWasher3: "Choose a cycle → Start.",
+
+        applKitchenTitle: "Oven / Stove",
+        applKitchen1: "Use knobs for burners.",
+        applKitchen2: "For oven: set mode + temperature.",
+        applKitchen3: "Turn off after use.",
+
+        applTrashTitle: "Trash & Recycling",
+        applTrash1: "Bag trash securely.",
+        applTrash2: "Dispose in designated bins (update location).",
+        applTrash3: "No loose food in bins.",
+
+        sectionFood: "Eat & Drink (Personal picks)",
+        sectionFoodNote: "Add your favorite spots + Google Maps links.",
+        cafesTitle: "Cafés (2)",
+        cafe1Name: "Café #1 (edit name)",
+        cafe1Desc: "great coffee & breakfast, relaxed vibe",
+        cafe2Name: "Café #2 (edit name)",
+        cafe2Desc: "good pastries, quick stop before the beach",
+        dinnerTitle: "Upscale dinner (2)",
+        dinner1Name: "Dinner #1 (edit name)",
+        dinner1Desc: "reservation recommended, great atmosphere",
+        dinner2Name: "Dinner #2 (edit name)",
+        dinner2Desc: "perfect for a special night, cocktails + seafood",
+        foodTip: "Tip: Paste Google Maps links so guests can tap once to navigate.",
+
+        sectionPhotos: "Photos",
+        sectionPhotosNote: "Replace these with your own apartment + beach pictures.",
+
+        sectionGuide: "Full house guide (PDF)",
+        sectionGuideNote: "Link your detailed manual here.",
+        pdfBody: "For complete instructions (every appliance, policies, and troubleshooting), open the full guide:",
+        pdfBtn: "Open PDF guide",
+        backTop: "Back to top",
+        pdfNote: "Tip: If your PDF is in the repo, you can upload it and link it like: ./assets/house-guide.pdf",
+
+        footerLine1: "Enjoy your stay — and please reach out if anything needs attention.",
+        footerLine2: "Host contact: (add your preferred contact method here)"
+      },
+
+      es: {
+        brandTitle: "ONA Residences • Punta Cana",
+        brandSubtitle: "Guía de bienvenida",
+        langLabel: "Idioma",
+        btnEssentials: "Info rápida",
+        btnManual: "Manual",
+        btnFood: "Comer y beber",
+
+        heroTitle: "Bienvenidos — relájense y disfruten Punta Cana 🌴",
+        heroBody: "Aquí está lo más importante primero (Wi-Fi, breaker, jacuzzi), además de una guía corta del apartamento y algunas recomendaciones. Para detalles completos, usa el PDF/enlace abajo.",
+        tagBeach: "Vibra playa y piscina",
+        tagFast: "Respuestas rápidas",
+        tagEasy: "Instrucciones fáciles",
+
+        wifiTitle: "Wi-Fi",
+        wifiHint: "Red y contraseña",
+        breakerTitle: "Breaker eléctrico",
+        breakerHint: "Si se va la luz",
+        breakerWhere: "Ubicación: cerca de la entrada / panel",
+        hotTubTitle: "Jacuzzi",
+        hotTubHint: "Inicio rápido + seguridad",
+        hotTubWhere: "Ubicación: terraza / patio",
+        btnFullGuide: "Abrir guía completa (PDF)",
+
+        sectionEssentials: "Info rápida",
+        sectionEssentialsNote: "Edita los textos para tu apartamento.",
+
+        wifiCardTitle: "Wi-Fi",
+        wifiCardBody: "Conéctate con la red y contraseña. Si está lento, reconecta o reinicia el router.",
+        wifiNetworkLabel: "Red:",
+        wifiPasswordLabel: "Contraseña:",
+        wifiRouterLabel: "Router:",
+        wifiRouterValue: "Sala (cerca del TV / estante)",
+
+        hotTubCardTitle: "Jacuzzi (instrucciones rápidas)",
+        hotTubCardBody: "Pasos simples para usarlo con seguridad.",
+        hotTubStep1: "1) Quita la cubierta con cuidado y colócala a un lado.",
+        hotTubStep2: "2) Presiona Power en el panel de control.",
+        hotTubStep3: "3) Ajusta la temperatura (recomendado ~38°C / 100°F).",
+        hotTubStep4: "4) Al terminar: apaga los jets y coloca la cubierta bien.",
+        hotTubSafety: "Seguridad: No vidrio. Niños siempre supervisados. No ajustar químicos.",
+
+        breakerCardTitle: "Si se va la luz",
+        breakerCardBody: "Casi siempre se resuelve con un reset.",
+        breakerStep1: "1) Verifica si es solo un área o todo el apartamento.",
+        breakerStep2: "2) Busca el panel (actualiza la ubicación).",
+        breakerStep3: "3) Encuentra el switch que esté a medio camino/apagado.",
+        breakerStep4: "4) Bájaló totalmente y luego súbelo.",
+        breakerStep5: "5) Si vuelve a dispararse, desconecta el último equipo y prueba una vez más.",
+        breakerLocationTag: "Ubicación del breaker: actualizar",
+        breakerContactTag: "Si es urgente, escribe al host",
+
+        sectionManual: "Manual (Cómo usar)",
+        sectionManualNote: "Versión corta — detalles en el PDF.",
+
+        applCoffeeTitle: "Cafetera",
+        applCoffee1: "Llena el tanque de agua.",
+        applCoffee2: "Agrega cápsula/café.",
+        applCoffee3: "Presiona iniciar.",
+        applCoffee4: "Si falla: apaga 10s y prueba.",
+
+        applACTitle: "A/C / Termostato",
+        applAC1: "Modo Cool (frío).",
+        applAC2: "Recomendado 23–25°C.",
+        applAC3: "Puertas/ventanas cerradas.",
+
+        applTVTitle: "TV y streaming",
+        applTV1: "Usa el control principal para encender.",
+        applTV2: "Elige HDMI/Apps.",
+        applTV3: "Cierra sesión al salir.",
+
+        applWasherTitle: "Lavadora / secadora",
+        applWasher1: "Carga sin sobrellenar.",
+        applWasher2: "Agrega detergente.",
+        applWasher3: "Elige ciclo → Start.",
+
+        applKitchenTitle: "Horno / Estufa",
+        applKitchen1: "Perillas para hornillas.",
+        applKitchen2: "Para horno: modo + temperatura.",
+        applKitchen3: "Apaga al terminar.",
+
+        applTrashTitle: "Basura y reciclaje",
+        applTrash1: "Cierra la bolsa bien.",
+        applTrash2: "Tira en los botes designados (actualiza ubicación).",
+        applTrash3: "No comida suelta.",
+
+        sectionFood: "Comer y beber (recomendaciones)",
+        sectionFoodNote: "Agrega tus lugares + links de Google Maps.",
+        cafesTitle: "Cafés (2)",
+        cafe1Name: "Café #1 (editar nombre)",
+        cafe1Desc: "buen café y desayuno, ambiente relajado",
+        cafe2Name: "Café #2 (editar nombre)",
+        cafe2Desc: "buenas piezas dulces, rápido antes de la playa",
+        dinnerTitle: "Cena elegante (2)",
+        dinner1Name: "Cena #1 (editar nombre)",
+        dinner1Desc: "mejor con reserva, gran ambiente",
+        dinner2Name: "Cena #2 (editar nombre)",
+        dinner2Desc: "ideal para una noche especial, cócteles y mariscos",
+        foodTip: "Tip: pega links de Google Maps para navegar con un toque.",
+
+        sectionPhotos: "Fotos",
+        sectionPhotosNote: "Reemplaza con tus fotos del apartamento y playa.",
+
+        sectionGuide: "Guía completa (PDF)",
+        sectionGuideNote: "Pon tu enlace aquí.",
+        pdfBody: "Para instrucciones completas (electrodomésticos, reglas, solución de problemas), abre la guía:",
+        pdfBtn: "Abrir PDF",
+        backTop: "Volver arriba",
+        pdfNote: "Tip: si subes el PDF al repo, enlázalo así: ./assets/house-guide.pdf",
+
+        footerLine1: "¡Disfruten su estadía! Escríbenos si algo necesita atención.",
+        footerLine2: "Contacto del host: (agrega tu contacto aquí)"
+      },
+
+      fr: {
+        brandTitle: "ONA Residences • Punta Cana",
+        brandSubtitle: "Guide de bienvenue",
+        langLabel: "Langue",
+        btnEssentials: "Essentiels",
+        btnManual: "Mode d’emploi",
+        btnFood: "Manger & boire",
+
+        heroTitle: "Bienvenue — détente et vacances à Punta Cana 🌴",
+        heroBody: "Vous trouverez ici l’essentiel (Wi-Fi, disjoncteur, jacuzzi) + un guide rapide et quelques recommandations. Pour tous les détails, utilisez le PDF ci-dessous.",
+        tagBeach: "Ambiance plage/piscine",
+        tagFast: "Réponses rapides",
+        tagEasy: "Instructions simples",
+
+        wifiTitle: "Wi-Fi",
+        wifiHint: "Réseau + mot de passe",
+        breakerTitle: "Disjoncteur",
+        breakerHint: "Si le courant saute",
+        breakerWhere: "Emplacement : près de l’entrée / panneau",
+        hotTubTitle: "Jacuzzi",
+        hotTubHint: "Démarrage + sécurité",
+        hotTubWhere: "Emplacement : terrasse / patio",
+        btnFullGuide: "Ouvrir le guide PDF",
+
+        sectionEssentials: "Essentiels",
+        sectionEssentialsNote: "Modifiez les textes selon votre appartement.",
+
+        wifiCardTitle: "Wi-Fi",
+        wifiCardBody: "Connectez-vous avec le réseau et le mot de passe. Si c’est lent, reconnectez-vous ou redémarrez le routeur.",
+        wifiNetworkLabel: "Réseau :",
+        wifiPasswordLabel: "Mot de passe :",
+        wifiRouterLabel: "Routeur :",
+        wifiRouterValue: "Salon (près de la TV / étagère)",
+
+        hotTubCardTitle: "Jacuzzi (rapide)",
+        hotTubCardBody: "Étapes simples et sûres.",
+        hotTubStep1: "1) Retirez la couverture avec précaution.",
+        hotTubStep2: "2) Appuyez sur Power sur le panneau.",
+        hotTubStep3: "3) Réglez la température (~38°C recommandé).",
+        hotTubStep4: "4) Après usage : stop jets, remettre la couverture.",
+        hotTubSafety: "Sécurité : pas de verre. Enfants surveillés. Ne touchez pas aux produits.",
+
+        breakerCardTitle: "Si le courant saute",
+        breakerCardBody: "La plupart du temps, un reset suffit.",
+        breakerStep1: "1) Vérifiez si c’est une pièce ou tout l’appartement.",
+        breakerStep2: "2) Trouvez le panneau (mettez l’emplacement).",
+        breakerStep3: "3) Repérez l’interrupteur au milieu/off.",
+        breakerStep4: "4) Basculez OFF puis ON.",
+        breakerStep5: "5) Si ça saute encore, débranchez le dernier appareil et réessayez.",
+        breakerLocationTag: "Emplacement disjoncteur : à compléter",
+        breakerContactTag: "Urgent : contactez l’hôte",
+
+        sectionManual: "Mode d’emploi (rapide)",
+        sectionManualNote: "Version courte — détails dans le PDF.",
+
+        applCoffeeTitle: "Cafetière",
+        applCoffee1: "Remplir le réservoir d’eau.",
+        applCoffee2: "Ajouter capsule/café.",
+        applCoffee3: "Appuyer sur Start.",
+        applCoffee4: "Si besoin : éteindre 10s puis réessayer.",
+
+        applACTitle: "Clim / Thermostat",
+        applAC1: "Mode Cool.",
+        applAC2: "Recommandé 23–25°C.",
+        applAC3: "Portes/fenêtres fermées.",
+
+        applTVTitle: "TV & streaming",
+        applTV1: "Allumer avec la télécommande principale.",
+        applTV2: "Choisir HDMI/Apps.",
+        applTV3: "Merci de vous déconnecter au départ.",
+
+        applWasherTitle: "Lave-linge / Sèche-linge",
+        applWasher1: "Ne pas surcharger.",
+        applWasher2: "Ajouter la lessive.",
+        applWasher3: "Choisir un cycle → Start.",
+
+        applKitchenTitle: "Four / Plaques",
+        applKitchen1: "Boutons pour les feux.",
+        applKitchen2: "Four : mode + température.",
+        applKitchen3: "Éteindre après usage.",
+
+        applTrashTitle: "Déchets",
+        applTrash1: "Fermer le sac.",
+        applTrash2: "Jeter dans les bacs (emplacement à compléter).",
+        applTrash3: "Pas de nourriture en vrac.",
+
+        sectionFood: "Manger & boire (recommandations)",
+        sectionFoodNote: "Ajoutez vos adresses + liens Google Maps.",
+        cafesTitle: "Cafés (2)",
+        cafe1Name: "Café #1 (à compléter)",
+        cafe1Desc: "très bon café et petit-déj, ambiance chill",
+        cafe2Name: "Café #2 (à compléter)",
+        cafe2Desc: "pâtisseries, parfait avant la plage",
+        dinnerTitle: "Dîner chic (2)",
+        dinner1Name: "Dîner #1 (à compléter)",
+        dinner1Desc: "réservation conseillée, belle ambiance",
+        dinner2Name: "Dîner #2 (à compléter)",
+        dinner2Desc: "soirée spéciale, cocktails et fruits de mer",
+        foodTip: "Astuce : collez les liens Google Maps pour y aller en 1 clic.",
+
+        sectionPhotos: "Photos",
+        sectionPhotosNote: "Remplacez par vos photos (appartement + plage).",
+
+        sectionGuide: "Guide complet (PDF)",
+        sectionGuideNote: "Ajoutez votre lien ici.",
+        pdfBody: "Pour toutes les informations (appareils, règles, dépannage), ouvrez le guide :",
+        pdfBtn: "Ouvrir le PDF",
+        backTop: "Retour en haut",
+        pdfNote: "Astuce : si le PDF est dans le repo : ./assets/house-guide.pdf",
+
+        footerLine1: "Profitez bien de votre séjour ! Contactez-nous si besoin.",
+        footerLine2: "Contact hôte : (ajoutez votre contact ici)"
+      }
+    };
+
+    function applyLanguage(lang){
+      document.documentElement.lang = lang;
+      const dict = I18N[lang] || I18N.en;
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        if (dict[key]) el.textContent = dict[key];
+      });
+      localStorage.setItem("lang", lang);
+    }
+
+    // Optional: set Wi-Fi values here once and it updates both places.
+    const WIFI = { name: "ONA-WIFI-NAME", pass: "PASSWORD-HERE" };
+    function applyWifi(){
+      ["wifiName","wifiName2"].forEach(id => { const el=document.getElementById(id); if(el) el.textContent=WIFI.name; });
+      ["wifiPass","wifiPass2"].forEach(id => { const el=document.getElementById(id); if(el) el.textContent=WIFI.pass; });
+    }
+
+    const saved = localStorage.getItem("lang") || "en";
+    const select = document.getElementById("lang");
+    select.value = saved;
+    select.addEventListener("change", (e) => applyLanguage(e.target.value));
+
+    applyWifi();
+    applyLanguage(saved);
+  </script>
+</body>
+</html>
